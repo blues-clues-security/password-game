@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>The Password Game</title>
+</head>
+<body>
+    <h1>* The Password Game</h1>
+    <form method="POST">
+        <label for="password">Please choose a password</label><br>
+        <input type="text" name="password" style="width: 80%;" value="{{ password }}" required><br>
+        <input type="submit" value="Submit">
+    </form>
+    <p>{{ message }}</p>
+    <p>{{ satisfied_rules | join('<br>') | safe }}</p>
+    {% if next_rule == 'You have successfully created a password that meets all the rules.' %}
+        <p>Congrats! You have successfully created a password that meets all the rules.</p>
+    {% else %}
+        <p>Next rule: {{ next_rule }}</p>
+    {% endif %}
+    {% if sponsor_images %}
+        <p>Sponsor images:</p>
+        {% for sponsor, image_url in sponsor_images.items() %}
+            <img src="{{ image_url }}" alt="{{ sponsor }}" width="100" height="100">
+        {% endfor %}
+    {% endif %}
+</body>
+</html>
